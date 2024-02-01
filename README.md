@@ -8,7 +8,7 @@ For more information on building and configuring dwm, vist dwm's home
 
 ![image](./screenshots/screenshot_dwm_1.png)
 ![image](./screenshots/screenshot_dwm_3.png)
-![image](./screenshots/screenshot_dwm_2.png)
+![image](./screenshots/screenshot_dwm_4.png)
 
 # Patches
 
