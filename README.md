@@ -1,6 +1,6 @@
-# My build of [suckless's](https://suckless.org) [dwm](https://dwm.suckless.org)
+# My build of suckless's dwm
 
-This is my build of [suckless's](https://suckless.org) [dwm](https://dwm.suckless.org).
+This is my build of [suckless](https://suckless.org)'s [dwm](https://dwm.suckless.org).
 For more information on building and configuring dwm, vist dwm's home
 [page](https://dwm.suckless.org).
 
@@ -8,7 +8,11 @@ For more information on building and configuring dwm, vist dwm's home
 
 ![image](./screenshots/screenshot_dwm_1.png)
 ![image](./screenshots/screenshot_dwm_3.png)
-![image](./screenshots/screenshot_dwm_2.png)
+![image](./screenshots/screenshot_dwm_4.png)
+
+# Colorscheme
+
+Ofcourse, the colorscheme is [catppuccin](https://github.com/catppuccin).
 
 # Patches
 
