@@ -12,7 +12,7 @@ For more information on building and configuring dwm, vist dwm's home
 
 # Colorscheme
 
-Ofcourse, the colorscheme is [catppuccin](https://github.com/catppuccin).
+Ofcourse, the colorscheme is [Catppuccin](https://github.com/catppuccin).
 
 # Patches
 
@@ -25,7 +25,7 @@ back then, when I was playing with dwm.
 
 ## List of patches
 
-Btw, these are patches applied from suckless's website
+Btw, these are the patches applied from suckless's website
 
 - activetagindicatorbar
 - actualfullscreen
