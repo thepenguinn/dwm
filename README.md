@@ -16,12 +16,12 @@ Ofcourse, the colorscheme is [Catppuccin](https://github.com/catppuccin).
 
 # Patches
 
-patches directory contains all the patches applied to this build. Other than
-that there are my own modifications to some parts of the source code. To know
-more about the changes you can view the git logs. To be honest that git log is
-a mess, my modification and the modification done by the patches are all all
-together in single big commit. Because I didn't even know how to even use git
-back then, when I was playing with dwm.
+`./patches`directory contains all the patches applied to this build. Other than
+that there are some of my own modifications to the source code. To know more
+about the changes, view git logs. To be honest that git log is a mess, my
+modifications and the modifications done by the patches are all together in
+single big commit. Because I didn't even know how to use git back then, when I
+was playing with dwm.
 
 ## List of patches
 
