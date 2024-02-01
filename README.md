@@ -1,6 +1,6 @@
 # My build of suckless's dwm
 
-This is my build of [suckless](https://suckless.org)'s [dwm](https://dwm.suckless.org).
+This is my build of [suckless's](https://suckless.org) [dwm](https://dwm.suckless.org).
 For more information on building and configuring dwm, vist dwm's home
 [page](https://dwm.suckless.org).
 
