@@ -16,7 +16,7 @@ Ofcourse, the colorscheme is [Catppuccin](https://github.com/catppuccin).
 
 # Patches
 
-`./patches`directory contains all the patches applied to this build. Other than
+`./patches` directory contains all the patches applied to this build. Other than
 that there are some of my own modifications to the source code. To know more
 about the changes, view git logs. To be honest that git log is a mess, my
 modifications and the modifications done by the patches are all together in
