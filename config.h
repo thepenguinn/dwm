@@ -7,12 +7,12 @@ static const unsigned int snap      = 30;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 32;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 38;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const int vertpad            = 15;       /* vertical padding of bar */
 static const int sidepad            = 15;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Source Code Pro:style=Medium,Regular,Solid:size=11,",
-	"Hack Nerd Font:style=Regular:size=11",
-	"Material Design Icons:style=Regular:size=15"};
+static const char *fonts[]          = { "Source Code Pro:style=Medium,Regular,Solid:size=16",
+	"Hack Nerd Font:style=Regular:size=16",
+	"Material Design Icons:style=Regular:size=16"};
 static const char dmenufont[]       = "Source Code Pro:style=Medium:size=11";
 static const char dmenulines[]      = "10";
 static const char col_gray1[]       = "#1E1E2E";
@@ -54,7 +54,7 @@ static Sp scratchpads[] = {
 	{"spterm_clip", spcmd7},
 };
 
-static AttRule attrule[] = { 
+static AttRule attrule[] = {
 
 	/* comment() {
 	 *
@@ -95,8 +95,8 @@ static AttRule attrule[] = {
 	 *
 	 *     if (stickall)
 	 *         ispinned and ismoulded will be ignored
-	 * }                                            +---------------------+   
-	 *                                              | 1        2        3 | 
+	 * }                                            +---------------------+
+	 *                                              | 1        2        3 |
 	 * 1 -> Top Edge      5 -> Top-Left Corner      |                     |
 	 * 2 -> Bottom Edge   6 -> Bottom-Right Corner  | 8        9        4 |
 	 * 3 -> Right Edge    7 -> Top-Right Corner     |                     |
@@ -104,7 +104,7 @@ static AttRule attrule[] = {
 	 *                                              +---------------------+
 	 * */
    /* att_pos  x_axis  y_axis  width  height  ispinned  ismoulded  ressizehint  stickall  linked */
-	{ 9,       30,      30,      650,   410,    1,        0,         1,           1,        NULL },
+	{ 3,       30,      30,      650,   410,    1,        0,         1,           1,        NULL },
 };
 
 
@@ -177,7 +177,7 @@ static const Layout layouts[] = {
  19 󱂬 float
  18 󱅶 tile
  17 󰄮 tile
-    󰄮   
+    󰄮
  16 󰄱 tile
  15 󰟈 fib
  14 󰣆 tile
@@ -278,4 +278,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
