@@ -10,10 +10,10 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int user_bh            = 38;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const int vertpad            = 15;       /* vertical padding of bar */
 static const int sidepad            = 15;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Source Code Pro:style=Medium,Regular,Solid:size=16",
-	"Hack Nerd Font:style=Regular:size=16",
-	"Material Design Icons:style=Regular:size=16"};
-static const char dmenufont[]       = "Source Code Pro:style=Medium:size=11";
+static const char *fonts[]          = { "Source Code Pro:style=Medium,Regular,Solid:size=12",
+	"Hack Nerd Font:style=Regular:size=12",
+	"Material Design Icons:style=Regular:size=12"};
+static const char dmenufont[]       = "Source Code Pro:style=Medium:size=10";
 static const char dmenulines[]      = "10";
 static const char col_gray1[]       = "#1E1E2E";
 static const char col_gray2[]       = "#14151d";
@@ -218,9 +218,9 @@ static const char *dmenuterm[]  = { "dmenuterm", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd }    },
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd }     },
+	{ MODKEY,                       XK_8,       spawn,          {.v = termcmd }     },
 	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = dmenuterm }   },
-	{ MODKEY,                       XK_b,      togglebar,      {0}                 },
+	{ MODKEY,                       XK_n,      togglebar,      {0}                 },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 }          },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 }          },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 }          },
@@ -243,7 +243,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 }          },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 }          },
 	{ MODKEY,                       XK_u,      togglescratch,  {.ui = 0 }          },
-	{ MODKEY,                       XK_w,      togglescratch,  {.ui = 4 }          },
+	// { MODKEY,                       XK_w,      togglescratch,  {.ui = 4 }          },
 	{ MODKEY,                       XK_o,      togglescratch,  {.ui = 5 }          },
 	{ MODKEY,                       XK_e,      togglescratch,  {.ui = 6 }          },
 	//{ MODKEY,                       XK_u,      togglescratch,  {.ui = 1 }          },
@@ -253,9 +253,18 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_j,      toggleattach,   {.i = 2 }           },
 	{ MODKEY|ShiftMask,             XK_k,      toggleattach,   {.i = 3 }           },
 	{ MODKEY|ShiftMask,             XK_l,      toggleattach,   {.i = 4 }           },
+    /* MOD + Return will take to the first tag, where the main terminal will always be */
+	TAGKEYS(                        XK_Return,                 0)
 	TAGKEYS(                        XK_1,                      0)
+
+    /* MOD + w will take to the second tag */
+	TAGKEYS(                        XK_w,                      1)
 	TAGKEYS(                        XK_2,                      1)
+
+    /* MOD + b will take to the third tag, where the browser will always be */
+	TAGKEYS(                        XK_b,                      2)
 	TAGKEYS(                        XK_3,                      2)
+
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
