@@ -2311,13 +2311,14 @@ focusortogglescratch(const Arg *arg)
                 }
             }
         } else {
+            setfullscreen(c, 0);
             if (newtagset) {
                 selmon->tagset[selmon->seltags] = newtagset;
             }
         }
         if (c->attrule && (cc = c->attrule->linked)) {
 			if (cc != c && ISVISIBLE(cc)) {
-				selmon->tagset[selmon->seltags] = selmon->tagset[selmon->seltags] ^ (cc->tags & SPTAGMASK);
+				selmon->tagset[selmon->seltags] ^= (cc->tags & SPTAGMASK);
 			} else // you don't need this part... I guess...
 				c->attrule->linked = NULL;
 		}
