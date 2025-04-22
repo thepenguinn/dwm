@@ -479,9 +479,11 @@ toggleattach(const Arg *arg)
 		default:
 			return;
 	}
-	animatetoggle(c); // TODO: fix it or forget it, i think i ll forget it..
-	//applyattachrules(c);
-	arrange(selmon);
+    if (!(c->isfullscreen)) {
+        animatetoggle(c); // TODO: fix it or forget it, i think i ll forget it..
+        //applyattachrules(c);
+        arrange(selmon);
+    }
 }
 
 void
