@@ -40,69 +40,70 @@ const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL
 const char *spcmd3[] = {"keepassxc", NULL };
 const char *spcmd4[] = {"st", "-n", "scrcpy", "-g", "109x24", "-e", "scrcpy.sh", NULL };
 const char *spcmd5[] = {"st", "-n", "spterm_w", "-g", "71x20+163+162", NULL };
-const char *spcmd6[] = {"st", "-n", "spterm_o", "-g", "71x20+163+162", NULL };
+const char *spcmd6[] = {"st", "-n", "spterm_gu", "-g", "71x20+163+162", "-e", "tss", "utils:general", NULL };
 //const char *spcmd6[] = {"nitrogen", NULL };
-const char *spcmd7[] = {"st", "-n", "spterm_clip", "-g", "71x20+150+162", "-e", "nvim", NULL };
+const char *spcmd7[] = {"st", "-n", "spterm_clip", "-g", "71x20+150+162", "-e", "nvim", "+TZMinimalist", "notes/index.norg", NULL };
+
 static Sp scratchpads[] = {
-	/* name          cmd  */
-	{"spterm_u",    spcmd1},
-	{"spranger",    spcmd2},
-	{"keepassxc",   spcmd3},
-	{"scrcpy",      spcmd4},
-	{"spterm_w",    spcmd5},
-	{"spterm_o",    spcmd6},
-	{"spterm_clip", spcmd7},
+	/* name                   cmd  */
+	{"spterm_u",             spcmd1},
+	{"spranger",             spcmd2},
+	{"keepassxc",            spcmd3},
+	{"scrcpy",               spcmd4},
+	{"spterm_w",             spcmd5},
+	{"spterm_gu",            spcmd6},
+	{"spterm_clip",          spcmd7},
 };
 
 static AttRule attrule[] = {
 
-	/* comment() {
-	 *
-	 *     if (att_pos) {
-	 *         x_axis = gap from the closest edge parallel to x axis;
-	 *         y_axis = gap from the closest edge parallel to y axis;
-	 *         ie, if (att_pos == 5) {
-	 *                 x_axis = gap from top edge to window;
-	 *                 y_axis = gap from left edge to window;
-	 *             }
-	 *         if (you_are_confused) {
-	 *             see the diagram below;
-	 *             the closest edges are the ones closest to each number;
-	 *         }
-	 *     } else {
-	 *         x_axis = x co-ordinate of top left corner of window;
-	 *         y_axis = y co-ordinate of top left corner of window;
-	 *     }
-	 *
-	 *     if (att_pos == any of the edges) {
-	 *     begining:
-	 *         if (you_are_lazy)
-	 *             x_axis = y_axis = the gap you want;
-	 *         else {
-	 *             you_are_lazy = 1;
-	 *             goto begining;
-	 *         }
-	 *     }
-	 *
-	 *     if (att_pos = 9)
-	 *         x_axis and y_axis will be ignored;
-	 *
-	 *     if (ispinned)
-	 *         dwm won't let you move it;
-	 *
-	 *     if (ismoulded)
-	 *         dwm won't let you resize it;
-	 *
-	 *     if (stickall)
-	 *         ispinned and ismoulded will be ignored
-	 * }                                            +---------------------+
-	 *                                              | 1        2        3 |
-	 * 1 -> Top Edge      5 -> Top-Left Corner      |                     |
-	 * 2 -> Bottom Edge   6 -> Bottom-Right Corner  | 8        9        4 |
-	 * 3 -> Right Edge    7 -> Top-Right Corner     |                     |
-	 * 4 -> Left Edge     8 -> Bottom-Left Corner   | 7        6        5 |
-	 *                                              +---------------------+
-	 * */
+    /* comment() {
+     *
+     *     if (att_pos) {
+     *         x_axis = gap from the closest edge parallel to x axis;
+     *         y_axis = gap from the closest edge parallel to y axis;
+     *         ie, if (att_pos == 5) {
+     *                 x_axis = gap from top edge to window;
+     *                 y_axis = gap from left edge to window;
+     *             }
+     *         if (you_are_confused) {
+     *             see the diagram below;
+     *             the closest edges are the ones closest to each number;
+     *         }
+     *     } else {
+     *         x_axis = x co-ordinate of top left corner of window;
+     *         y_axis = y co-ordinate of top left corner of window;
+     *     }
+     *
+     *     if (att_pos == any of the edges) {
+     *     begining:
+     *         if (you_are_lazy)
+     *             x_axis = y_axis = the gap you want;
+     *         else {
+     *             you_are_lazy = 1;
+     *             goto begining;
+     *         }
+     *     }
+     *
+     *     if (att_pos = 9)
+     *         x_axis and y_axis will be ignored;
+     *
+     *     if (ispinned)
+     *         dwm won't let you move it;
+     *
+     *     if (ismoulded)
+     *         dwm won't let you resize it;
+     *
+     *     if (stickall)
+     *         ispinned and ismoulded will be ignored
+     * }                                            +---------------------+
+     *                                              | 1        2        3 |
+     * 1 -> Top Edge      5 -> Top-Left Corner      |                     |
+     * 2 -> Bottom Edge   6 -> Bottom-Right Corner  | 8        9        4 |
+     * 3 -> Right Edge    7 -> Top-Right Corner     |                     |
+     * 4 -> Left Edge     8 -> Bottom-Left Corner   | 7        6        5 |
+     *                                              +---------------------+
+     * */
    /* att_pos  x_axis  y_axis  width  height  ispinned  ismoulded  ressizehint  stickall  linked */
 	{ 3,       30,      30,      650,   410,    1,        0,         1,           1,        NULL },
 };
@@ -145,19 +146,19 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class           instance        title           tags mask  isfloating  isterminal  noswallow  monitor   attach_rule */
-	{ "Gimp",          NULL,           NULL,           0,         0,          0,           0,         -1,      NULL },
-	{ "Brave-browser", "brave-browser",NULL,           1 << 2,    0,          0,          -1,         -1,      NULL },
-	{ "st-256color",   "main_terminal",NULL,           1 << 0,    0,          0,          -1,         -1,      NULL },
-	{ "st-256color",   NULL,           NULL,           0,         0,          1,           0,         -1,      NULL },
-	{ NULL,            NULL,           "Event Tester", 0,         0,          0,           1,         -1,      NULL }, /* xev */
-	{ "st-256color",   "spterm_u",     NULL,           SPTAG(0),  1,          1,           0,         -1,      &attrule[0] },
-	{ NULL,            "spfm",         NULL,           SPTAG(1),  1,          0,           0,         -1,      NULL },
-	{ NULL,            "keepassxc",    NULL,           SPTAG(2),  0,          0,           0,         -1,      NULL },
-	{ "st-256color",   "scrcpy",       NULL,           SPTAG(3),  1,          1,           0,         -1,      NULL },
-	{ "st-256color",   "spterm_w",     NULL,           SPTAG(4),  1,          1,           0,         -1,      &attrule[0] },
-	{ "st-256color",   "spterm_o",     NULL,           SPTAG(5),  1,          1,           0,         -1,      &attrule[0] },
-	{ "st-256color",   "spterm_clip",  NULL,           SPTAG(6),  1,          1,           0,         -1,      &attrule[0] },
+	/* class           instance          title           tags mask  isfloating  isterminal  noswallow  monitor   attach_rule */
+	{ "Gimp",          NULL,             NULL,           0,         0,          0,           0,         -1,      NULL },
+	{ "Brave-browser", "brave-browser",  NULL,           1 << 2,    0,          0,          -1,         -1,      NULL },
+	{ "st-256color",   "main_terminal",  NULL,           1 << 0,    0,          0,          -1,         -1,      NULL },
+	{ "st-256color",   NULL,             NULL,           0,         0,          1,           0,         -1,      NULL },
+	{ NULL,            NULL,             "Event Tester", 0,         0,          0,           1,         -1,      NULL }, /* xev */
+	{ "st-256color",   "spterm_u",       NULL,           SPTAG(0),  1,          1,           0,         -1,      NULL },
+	{ NULL,            "spfm",           NULL,           SPTAG(1),  1,          0,           0,         -1,      NULL },
+	{ NULL,            "keepassxc",      NULL,           SPTAG(2),  0,          0,           0,         -1,      NULL },
+	{ "st-256color",   "scrcpy",         NULL,           SPTAG(3),  1,          1,           0,         -1,      NULL },
+	{ "st-256color",   "spterm_w",       NULL,           SPTAG(4),  1,          1,           0,         -1,      NULL },
+	{ "st-256color",   "spterm_gu",      NULL,           SPTAG(5),  1,          1,           0,         -1,      &attrule[0] },
+	{ "st-256color",   "spterm_clip",    NULL,           SPTAG(6),  1,          1,           0,         -1,      &attrule[0] },
 
 };
 
@@ -217,43 +218,43 @@ static const char *dmenuterm[]  = { "dmenuterm", NULL };
 
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd }    },
-	{ MODKEY,                       XK_8,       spawn,          {.v = termcmd }     },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = dmenuterm }   },
-	{ MODKEY,                       XK_n,      togglebar,      {0}                 },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 }          },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 }          },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 }          },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 }          },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05}        },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05}        },
-	{ MODKEY,                       XK_space,  zoom,           {0}                 },
-	{ MODKEY,                       XK_Tab,    view,           {0}                 },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0}                 },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]}  },
-	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]}  },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]}  },
-	{ MODKEY|ShiftMask,             XK_Return, setlayout,      {0}                 },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0}                 },
-	{ MODKEY,                       XK_f,      togglefullscr,  {0}                 },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 }         },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 }         },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 }          },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 }          },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 }          },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 }          },
-	{ MODKEY,                       XK_u,      togglescratch,  {.ui = 0 }          },
-	// { MODKEY,                       XK_w,      togglescratch,  {.ui = 4 }          },
-	{ MODKEY,                       XK_o,      togglescratch,  {.ui = 5 }          },
-	{ MODKEY,                       XK_e,      togglescratch,  {.ui = 6 }          },
-	//{ MODKEY,                       XK_u,      togglescratch,  {.ui = 1 }          },
-	{ MODKEY,                       XK_x,      togglescratch,  {.ui = 2 }          },
-	{ MODKEY|ShiftMask,             XK_e,      togglescratch,  {.ui = 3 }          },
-	{ MODKEY|ShiftMask,             XK_h,      toggleattach,   {.i = 1 }           },
-	{ MODKEY|ShiftMask,             XK_j,      toggleattach,   {.i = 2 }           },
-	{ MODKEY|ShiftMask,             XK_k,      toggleattach,   {.i = 3 }           },
-	{ MODKEY|ShiftMask,             XK_l,      toggleattach,   {.i = 4 }           },
+	/* modifier                     key           function        argument */
+	{ MODKEY,                       XK_p,         spawn,          {.v = dmenucmd }    },
+	{ MODKEY,                       XK_8,         spawn,          {.v = termcmd }     },
+	{ MODKEY|ShiftMask,             XK_c,         spawn,          {.v = dmenuterm }   },
+	{ MODKEY,                       XK_n,         togglebar,      {0}                 },
+	{ MODKEY,                       XK_j,         focusstack,     {.i = +1 }          },
+	{ MODKEY,                       XK_k,         focusstack,     {.i = -1 }          },
+	{ MODKEY,                       XK_i,         incnmaster,     {.i = +1 }          },
+	{ MODKEY,                       XK_d,         incnmaster,     {.i = -1 }          },
+	{ MODKEY,                       XK_h,         setmfact,       {.f = -0.05}        },
+	{ MODKEY,                       XK_l,         setmfact,       {.f = +0.05}        },
+	{ MODKEY,                       XK_space,     zoom,           {0}                 },
+	{ MODKEY,                       XK_Tab,       view,           {0}                 },
+	{ MODKEY|ShiftMask,             XK_q,         killclient,     {0}                 },
+	{ MODKEY,                       XK_t,         setlayout,      {.v = &layouts[0]}  },
+	{ MODKEY|ShiftMask,             XK_f,         setlayout,      {.v = &layouts[1]}  },
+	{ MODKEY,                       XK_m,         setlayout,      {.v = &layouts[2]}  },
+	{ MODKEY|ShiftMask,             XK_Return,    setlayout,      {0}                 },
+	{ MODKEY|ShiftMask,             XK_space,     togglefloating, {0}                 },
+	{ MODKEY,                       XK_f,         togglefullscr,  {0}                 },
+	{ MODKEY,                       XK_0,         view,           {.ui = ~0 }         },
+	{ MODKEY|ShiftMask,             XK_0,         tag,            {.ui = ~0 }         },
+	{ MODKEY,                       XK_comma,     focusmon,       {.i = -1 }          },
+	{ MODKEY,                       XK_period,    focusmon,       {.i = +1 }          },
+	{ MODKEY|ShiftMask,             XK_comma,     tagmon,         {.i = -1 }          },
+	{ MODKEY|ShiftMask,             XK_period,    tagmon,         {.i = +1 }          },
+	{ MODKEY,                       XK_u,         togglescratch,  {.ui = 0 }          },
+	// { MODKEY,                       XK_w,         togglescratch,  {.ui = 4 }          },
+	{ MODKEY,                       XK_semicolon, togglescratch,  {.ui = 5 }          },
+	{ MODKEY,                       XK_o,         togglescratch,  {.ui = 6 }          },
+	// { MODKEY,                       XK_u,         togglescratch,  {.ui = 1 }          },
+	{ MODKEY,                       XK_x,         togglescratch,  {.ui = 2 }          },
+	{ MODKEY|ShiftMask,             XK_e,         togglescratch,  {.ui = 3 }          },
+	{ MODKEY|ShiftMask,             XK_h,         toggleattach,   {.i = 1 }           },
+	{ MODKEY|ShiftMask,             XK_j,         toggleattach,   {.i = 2 }           },
+	{ MODKEY|ShiftMask,             XK_k,         toggleattach,   {.i = 3 }           },
+	{ MODKEY|ShiftMask,             XK_l,         toggleattach,   {.i = 4 }           },
     /* MOD + Return will take to the first tag, where the main terminal will always be */
 	TAGKEYS(                        XK_Return,                 0)
 	TAGKEYS(                        XK_1,                      0)
@@ -270,7 +271,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
 	TAGKEYS(                        XK_7,                      6)
-	{ MODKEY|ShiftMask|ControlMask, XK_x,      quit,           {0}                 },
+	{ MODKEY|ShiftMask|ControlMask, XK_x,         quit,           {0}                 },
 };
 
 /* button definitions */
