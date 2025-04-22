@@ -57,6 +57,7 @@
 #define INTERSECT(x,y,w,h,m)    (MAX(0, MIN((x)+(w),(m)->wx+(m)->ww) - MAX((x),(m)->wx)) \
                                * MAX(0, MIN((y)+(h),(m)->wy+(m)->wh) - MAX((y),(m)->wy)))
 #define ISVISIBLE(C)            ((C->tags & C->mon->tagset[C->mon->seltags]))
+#define ISFOCUSED(C)            ((C == C->mon->sel))
 #define LENGTH(X)               (sizeof X / sizeof X[0])
 #define MOUSEMASK               (BUTTONMASK|PointerMotionMask)
 #define WIDTH(X)                ((X)->w + 2 * (X)->bw)
@@ -96,7 +97,7 @@ typedef struct {
 typedef struct Monitor Monitor;
 typedef struct Client Client;
 
-typedef struct { 
+typedef struct {
 	int att_pos;
 	int x_axis;
 	int y_axis;
@@ -250,7 +251,7 @@ static void toggleattach(const Arg *arg);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglefullscr(const Arg *arg);
-static void togglescratch(const Arg *arg);
+static void focusortogglescratch(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -283,7 +284,7 @@ static pid_t winpid(Window w);
 /* variables */
 static const char broken[] = "broken";
 static char stext[1024];
-//static Client 
+//static Client
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
@@ -612,7 +613,7 @@ applyattachrules(Client *c)
 		c->y = c->mon->wy + (c->mon->wh / 2 - HEIGHT(c) / 2);
 	} else if (!c->attrule->att_pos) {
 		c->x = c->attrule->x_axis;
-		c->y = c->attrule->y_axis; 
+		c->y = c->attrule->y_axis;
 	}
 }
 
@@ -2288,7 +2289,7 @@ togglefloating(const Arg *arg)
 }
 
 void
-togglescratch(const Arg *arg)
+focusortogglescratch(const Arg *arg)
 {
 	Client *c;
 	unsigned int found = 0;
@@ -2299,12 +2300,22 @@ togglescratch(const Arg *arg)
 	for (c = selmon->clients; c && !(found = c->tags & scratchtag); c = c->next);
 	if (found) {
 		unsigned int newtagset = selmon->tagset[selmon->seltags] ^ scratchtag;
-		if (c->attrule && (selmon->tagset[selmon->seltags] & scratchtag))
-			c->attrule->linked = NULL;
-		if (newtagset) {
-			selmon->tagset[selmon->seltags] = newtagset;
-		}
-		if (c->attrule && (cc = c->attrule->linked)) {
+        if (selmon->tagset[selmon->seltags] & scratchtag) {
+            // scratchpad will be toggled off if only it was focused one
+            if (ISFOCUSED(c)) {
+                if (c->attrule) {
+                    c->attrule->linked = NULL;
+                }
+                if (newtagset) {
+                    selmon->tagset[selmon->seltags] = newtagset;
+                }
+            }
+        } else {
+            if (newtagset) {
+                selmon->tagset[selmon->seltags] = newtagset;
+            }
+        }
+        if (c->attrule && (cc = c->attrule->linked)) {
 			if (cc != c && ISVISIBLE(cc)) {
 				selmon->tagset[selmon->seltags] = selmon->tagset[selmon->seltags] ^ (cc->tags & SPTAGMASK);
 			} else // you don't need this part... I guess...
