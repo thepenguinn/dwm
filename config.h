@@ -147,7 +147,8 @@ static const Rule rules[] = {
 	 */
 	/* class           instance        title           tags mask  isfloating  isterminal  noswallow  monitor   attach_rule */
 	{ "Gimp",          NULL,           NULL,           0,         0,          0,           0,         -1,      NULL },
-	{ "Firefox",       NULL,           NULL,           1 << 8,    0,          0,          -1,         -1,      NULL },
+	{ "Brave-browser", "brave-browser",NULL,           1 << 2,    0,          0,          -1,         -1,      NULL },
+	{ "st-256color",   "main_terminal",NULL,           1 << 0,    0,          0,          -1,         -1,      NULL },
 	{ "st-256color",   NULL,           NULL,           0,         0,          1,           0,         -1,      NULL },
 	{ NULL,            NULL,           "Event Tester", 0,         0,          0,           1,         -1,      NULL }, /* xev */
 	{ "st-256color",   "spterm_u",     NULL,           SPTAG(0),  1,          1,           0,         -1,      &attrule[0] },
