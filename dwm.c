@@ -2301,7 +2301,7 @@ focusortogglescratch(const Arg *arg)
 	if (found) {
 		unsigned int newtagset = selmon->tagset[selmon->seltags] ^ scratchtag;
         if (selmon->tagset[selmon->seltags] & scratchtag) {
-            // scratchpad will be toggled off if only it was focused one
+            // scratchpad will be toggled off if and only if it was the focused one
             if (ISFOCUSED(c)) {
                 if (c->attrule) {
                     c->attrule->linked = NULL;
