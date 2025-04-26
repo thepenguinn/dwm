@@ -19,6 +19,7 @@ static const char col_gray1[]       = "#1E1E2E";
 static const char col_gray2[]       = "#14151d";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#cccccc";
+static const char col_cat_gray[]    = "#CDD6F4";
 static const char col_orange[]      = "#f2cdcd";
 static const char col_cyan[]        = "#DDB6F2";
 static const char col_dmenu[]       = "#a885dd";
@@ -148,7 +149,7 @@ static const Rule rules[] = {
 	 */
 	/* class           instance          title           tags mask  isfloating  isterminal  noswallow  monitor   attach_rule */
 	{ "Gimp",          NULL,             NULL,           0,         0,          0,           0,         -1,      NULL },
-	{ "Brave-browser", "brave-browser",  NULL,           1 << 2,    0,          0,           1,         -1,      NULL },
+	{ "qutebrowser",   "qutebrowser",    NULL,           1 << 2,    0,          0,           1,         -1,      NULL },
 	{ "st-256color",   "main_terminal",  NULL,           1 << 0,    0,          0,           1,         -1,      NULL },
 	{ "st-256color",   NULL,             NULL,           0,         0,          1,           0,         -1,      NULL },
 	{ NULL,            NULL,             "Event Tester", 0,         0,          0,           1,         -1,      NULL }, /* xev */
