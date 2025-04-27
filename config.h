@@ -39,7 +39,7 @@ typedef struct {
 const char *spcmd1[] = {"st", "-n", "spterm_u", "-g", "71x20+163+162", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
 const char *spcmd3[] = {"keepassxc", NULL };
-const char *spcmd4[] = {"st", "-n", "scrcpy", "-g", "109x24", "-e", "scrcpy.sh", NULL };
+const char *spcmd4[] = {"a50scpy", NULL };
 const char *spcmd5[] = {"st", "-n", "spterm_w", "-g", "71x20+163+162", NULL };
 const char *spcmd6[] = {"st", "-n", "spterm_gu", "-g", "71x20+163+162", "-e", "tss", "utils:general", NULL };
 //const char *spcmd6[] = {"nitrogen", NULL };
@@ -107,6 +107,7 @@ static AttRule attrule[] = {
      * */
    /* att_pos  x_axis  y_axis  width  height  ispinned  ismoulded  ressizehint  stickall  linked */
 	{ 3,       30,      30,      650,   410,    1,        0,         1,           1,        NULL },
+	{ 8,       30,      30,      400,   860,    1,        0,         1,           1,        NULL },
 };
 
 
@@ -156,7 +157,7 @@ static const Rule rules[] = {
 	{ "st-256color",   "spterm_u",       NULL,           SPTAG(0),  1,          1,           0,         -1,      NULL },
 	{ NULL,            "spfm",           NULL,           SPTAG(1),  1,          0,           0,         -1,      NULL },
 	{ NULL,            "keepassxc",      NULL,           SPTAG(2),  0,          0,           0,         -1,      NULL },
-	{ "st-256color",   "scrcpy",         NULL,           SPTAG(3),  1,          1,           0,         -1,      NULL },
+	{ "scrcpy",        "scrcpy",         "a50s",         SPTAG(3),  1,          1,           0,         -1,      &attrule[1] },
 	{ "st-256color",   "spterm_w",       NULL,           SPTAG(4),  1,          1,           0,         -1,      NULL },
 	{ "st-256color",   "spterm_gu",      NULL,           SPTAG(5),  1,          1,           0,         -1,      &attrule[0] },
 	{ "st-256color",   "spterm_clip",    NULL,           SPTAG(6),  1,          1,           0,         -1,      &attrule[0] },
@@ -251,7 +252,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_o,         focusortogglescratch,  {.ui = 6 }          },
 	// { MODKEY,                       XK_u,         focusortogglescratch,  {.ui = 1 }          },
 	{ MODKEY,                       XK_x,         focusortogglescratch,  {.ui = 2 }          },
-	{ MODKEY|ShiftMask,             XK_e,         focusortogglescratch,  {.ui = 3 }          },
+	{ MODKEY,                       XK_s,         focusortogglescratch,  {.ui = 3 }          },
 	{ MODKEY|ShiftMask,             XK_h,         toggleattach,          {.i = 1 }           },
 	{ MODKEY|ShiftMask,             XK_j,         toggleattach,          {.i = 2 }           },
 	{ MODKEY|ShiftMask,             XK_k,         toggleattach,          {.i = 3 }           },
