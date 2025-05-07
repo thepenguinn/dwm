@@ -44,6 +44,7 @@ const char *spcmd5[] = {"st", "-n", "spterm_w", "-g", "71x20+163+162", NULL };
 const char *spcmd6[] = {"st", "-n", "spterm_gu", "-g", "71x20+163+162", "-e", "tss", "utils:general", NULL };
 //const char *spcmd6[] = {"nitrogen", NULL };
 const char *spcmd7[] = {"st", "-n", "spterm_clip", "-g", "71x20+150+162", "-e", "nvim", "+TZMinimalist", "notes/index.norg", NULL };
+const char *a50scpy_headless[] = {"st", "-g", "20x10+0+0", "-n", "a50scpy-headless", "-e", "a50scpy-headless", NULL };
 
 static Sp scratchpads[] = {
 	/* name                   cmd  */
@@ -54,6 +55,7 @@ static Sp scratchpads[] = {
 	{"spterm_w",             spcmd5},
 	{"spterm_gu",            spcmd6},
 	{"spterm_clip",          spcmd7},
+	{"a50scpy-headless",     a50scpy_headless},
 };
 
 static AttRule attrule[] = {
@@ -161,6 +163,7 @@ static const Rule rules[] = {
 	{ "st-256color",   "spterm_w",       NULL,           SPTAG(4),  1,          1,           0,         -1,      NULL },
 	{ "st-256color",   "spterm_gu",      NULL,           SPTAG(5),  1,          1,           0,         -1,      &attrule[0] },
 	{ "st-256color",   "spterm_clip",    NULL,           SPTAG(6),  1,          1,           0,         -1,      &attrule[0] },
+	{ "st-256color",   "a50scpy-headless", NULL,         SPTAG(7),  1,          1,           0,         -1,      &attrule[1] },
 
 };
 
@@ -253,6 +256,7 @@ static Key keys[] = {
 	// { MODKEY,                       XK_u,         focusortogglescratch,  {.ui = 1 }          },
 	{ MODKEY,                       XK_x,         focusortogglescratch,  {.ui = 2 }          },
 	{ MODKEY|ShiftMask,             XK_s,         focusortogglescratch,  {.ui = 3 }          },
+	{ MODKEY,                       XK_s,         focusortogglescratch,  {.ui = 7 }          },
 	{ MODKEY|ShiftMask,             XK_h,         toggleattach,          {.i = 1 }           },
 	{ MODKEY|ShiftMask,             XK_j,         toggleattach,          {.i = 2 }           },
 	{ MODKEY|ShiftMask,             XK_k,         toggleattach,          {.i = 3 }           },
