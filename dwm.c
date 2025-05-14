@@ -1197,6 +1197,7 @@ drawbar(Monitor *m)
 	//int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
+    Fnt *pfont;
 
 	if (!m->showbar)
 		return;
@@ -1211,7 +1212,12 @@ drawbar(Monitor *m)
 		if (c->isurgent)
 			urg |= c->tags;
 	}
-	x = 0;
+    x = 0;
+    /* TODO: This is a lame hack fix it. */
+    pfont = drw->fonts;
+    if (drw->fonts->next) {
+        drw_setfontset(drw, drw->fonts->next);
+    }
 	for (i = 0; i < LENGTH(tags); i++) {
 		w = TEXTW(tags[i]);
 		drw_setscheme(drw, (m->tagset[m->seltags] & 1 << i ? tagscheme[i] : scheme[SchemeTags]));
@@ -1225,6 +1231,8 @@ drawbar(Monitor *m)
 
 		x += w;
 	}
+    drw_setfontset(drw, pfont);
+
 	w = blw = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, scheme[SchemeLout]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);

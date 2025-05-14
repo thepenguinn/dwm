@@ -7,12 +7,15 @@ static const unsigned int snap      = 30;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 38;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
+static const int user_bh            = 42;        /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const int vertpad            = 15;       /* vertical padding of bar */
 static const int sidepad            = 15;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Source Code Pro:style=Medium,Regular,Solid:size=12",
+static const char *fonts[]          = {
+    "Source Code Pro:style=Regular:size=12",
+    "Source Code Pro:style=Regular:size=12", /* TODO: This is a lame hack fix it. */
 	"Hack Nerd Font:style=Regular:size=12",
-	"Material Design Icons:style=Regular:size=12"};
+	"Material Design Icons:style=Regular:size=12"
+};
 static const char dmenufont[]       = "Source Code Pro:style=Medium:size=10";
 static const char dmenulines[]      = "10";
 static const char col_gray1[]       = "#1E1E2E";
@@ -120,6 +123,14 @@ static const int bouncerange = 30;
 
 /* tagging */
 static const char *tags[] = { "󰟡", "󰐤", "󰈹", "󰨆", "󰌲", "󰇮", "󰈚" };
+
+// static const char *tags[] = { "𝕵", "𝕺", "𝖀", "𝕽", "𝕹", "𝕰", "𝖄" };
+
+// static const char *tags[] = { "𝕬", "𝕭", "𝕮", "𝕯", "𝕰", "𝕱", "𝕲" };
+// static const char *tags[] = { "󰟡", "󰐤", "󰈹", "󰨆", "󰌲", "󰇮", "󰈚" };
+
+// 𝕬 𝕭 𝕮 𝕯 𝕰 𝕱 𝕲 𝕳 𝕴 𝕵 𝕶 𝕷 𝕸 𝕹 𝕺 𝕻 𝕼 𝕽 𝕾 𝕿 𝖀 𝖁 𝖂 𝖃 𝖄 𝖅
+// A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
 
 /* monocle mode layouts icons for <=10 */
 static const char *monocle_layout[] = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳", "󰎶", "󰎹", "󰎼", "󰽽", "󰞋" };
